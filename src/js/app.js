@@ -289,7 +289,7 @@ const gridNode = createNode('div', 'grid');
 const createBlock = () => {
 
 	const blocksNode = createNode('div', 'blocks');
-	const numbers = [...getCard(), ...getCard()];
+	const numbers = shuffle([...getCard(), ...getCard()]);
 	const letters = numbers.map((number) => {
 		return data.symbols[symbols][cards][number];
 	});
