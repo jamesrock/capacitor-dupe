@@ -1,0 +1,10 @@
+{
+  "appId": "me.jamesrock.dupe",
+  "appName": "dupe!",
+  "webDir": "dist",
+  "plugins": {
+    "SplashScreen": {
+      "launchAutoHide": false
+    }
+  }
+}
