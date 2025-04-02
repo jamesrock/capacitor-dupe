@@ -284,12 +284,40 @@ data = {
 
 const getCard = () => data.cards[cards].splice(Math.floor(Math.random() * (data.cards[cards].length)), 1)[0];
 
-const numbers = [...getCard(), ...getCard()];
-const letters = numbers.map((number) => {
-	return data.symbols[symbols][cards][number];
-});
+const gridNode = createNode('div', 'grid');
 
-console.log(numbers);
-console.log(letters);
+const createBlock = () => {
+
+	const blocksNode = createNode('div', 'blocks');
+	const numbers = [...getCard(), ...getCard()];
+	const letters = numbers.map((number) => {
+		return data.symbols[symbols][cards][number];
+	});
+
+	letters.forEach((letter) => {
+		const blockNode = createNode('div', 'block');
+		blockNode.innerHTML = letter;
+		blocksNode.appendChild(blockNode);
+	});
+
+	gridNode.appendChild(blocksNode);
+
+	console.log(numbers);
+	console.log(letters);
+
+};
+
+createBlock();
+createBlock();
+createBlock();
+createBlock();
+createBlock();
+createBlock();
+createBlock();
+createBlock();
+createBlock();
+
 console.log('cards', data.cards[cards]);
 console.log('symbols', data.symbols[symbols][cards]);
+
+document.body.appendChild(gridNode);
