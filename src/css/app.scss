@@ -20,9 +20,9 @@
 }
 
 :root {
-  --grid-size: 626px;
-  --blocks-size: 290px;
-  --focus: tomato;
+  --blocks-size: 330px;
+  --block-size: 50px;
+  --gap: 20px;
 }
 
 * {
@@ -54,8 +54,9 @@ body {
 .blocks {
   display: flex;
   flex-wrap: wrap;
-  max-width: var(--blocks-size);
-  gap: 10px;
+  width: var(--blocks-size);
+  height: var(--blocks-size);
+  gap: var(--gap);
   transition: opacity 0.25s;
   background-color: white;
 
@@ -65,8 +66,8 @@ body {
 }
 
 .block {
-  width: 50px;
-  height: 50px;
+  width: var(--block-size);
+  height: var(--block-size);
   font-size: 42px;
   display: flex;
   justify-content: center;
@@ -76,21 +77,23 @@ body {
   cursor: pointer;
   transition: color 0.25s, transform 0.25s;
   will-change: transform;
+  // position: absolute;
   
+  &[data-shape="1"] {
+    color: tomato;
+  }
+  &[data-shape="2"] {
+    color: deepskyblue;
+  }
+  &[data-shape="3"] {
+    color: fuchsia;
+  }
+
   &:hover,
   &.selected,
   &.matched {
-    color: fuchsia;
+    color: grey;
     transform: scale(1.5);
-  }
-  &[data-shape="1"] {
-    color: green;
-  }
-  &[data-shape="2"] {
-    color: crimson;
-  }
-  &[data-shape="3"] {
-    color: blue;
   }
 }
 

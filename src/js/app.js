@@ -10,8 +10,8 @@ let targetNodes = null;
 
 const getRandomRotation = () => rotations[Math.floor(Math.random() * rotations.length)];
 const getRandomBlockRotation = () => Math.floor(Math.random() * 360);
-// const getCard = () => shuffle(data.cards[cards].splice(Math.floor(Math.random() * data.cards[cards].length), 1)[0]);
-const getCard = () => shuffle(data.cards[cards][Math.floor(Math.random() * data.cards[cards].length)]);
+const getRandomCard = () => shuffle(data.cards[cards][Math.floor(Math.random() * data.cards[cards].length)]);
+const getRandomSymbolIndex = () => Math.floor(Math.random() * data.symbols[symbols][cards].length);
 const highlightRandomBlocks = () => {
 
 	// const blocks = shuffle([0, 1, 2, 3, 4, 5, 6, 7, 8]);
@@ -44,22 +44,28 @@ const gridNode = createNode('div', 'grid');
 const createBlock = () => {
 
 	const blocksNode = createNode('div', 'blocks');
-	const numbers = shuffle([...getCard(), ...getCard()]);
+	const numbers = shuffle([...getRandomCard(), ...getRandomCard()]);
+	let filler = getRandomSymbolIndex();
+	while(numbers.includes(filler)) {
+		console.log('match!');
+		filler = getRandomSymbolIndex();
+	};
+	numbers.push(filler);
 	const letters = numbers.map((number) => {
 		return data.symbols[symbols][cards][number];
 	});
 
-	blocksNode.style.transform = `rotate(${getRandomRotation()}deg)`;
+	console.log('filler', filler);
 
-	letters.forEach((letter) => {
+	// blocksNode.style.transform = `rotate(${getRandomRotation()}deg)`;
+
+	letters.forEach((letter, i) => {
 		const blockNode = createNode('div', 'block');
-		const rotatekNode = createNode('span', 'block-value');
 		blockNode.setAttribute('data-value', letter[0]);
 		blockNode.setAttribute('data-shape', letter[1]);
-		rotatekNode.innerHTML = letter[0];
-		rotatekNode.style.transform = `rotate(${getRandomBlockRotation()}deg)`;
-		// rotatekNode.style.transform = `rotate(${letter[1]*90}deg)`;
-		blockNode.append(rotatekNode);
+		blockNode.setAttribute('data-index', i);
+		blockNode.innerHTML = letter[0];
+		blockNode.style.transform = `rotate(${getRandomBlockRotation()}deg)`;
 		blocksNode.append(blockNode);
 	});
 
@@ -147,4 +153,4 @@ document.body.append(gridNode);
 
 highlightRandomBlocks();
 
-console.log(data);
+console.log(data.symbols[symbols][cards]);
