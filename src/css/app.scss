@@ -91,7 +91,7 @@ body {
   &:hover,
   &.selected,
   &.matched {
-    color: grey;
+    // color: grey;
     transform: scale(1.5);
   }
 }
