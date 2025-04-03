@@ -42,11 +42,7 @@ body {
 .grid {
   display: flex;
   flex-wrap: wrap;
-  // width: var(--grid-size);
-  // height: var(--grid-size);
   position: relative;
-  // gap: 4px;
-  // background-color: gainsboro;
 
   .blocks {
     &.completed {
@@ -107,8 +103,5 @@ body {
   height: var(--blocks-size);
   .blocks {
     position: absolute;
-  }
-  &.focus {
-    // color: var(--focus);
   }
 }
