@@ -12,11 +12,27 @@ body {
   height: 100vh;
 }
 
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  width: 200px;
+  height: 200px;
+  position: relative;
+}
+
 .blocks {
   display: flex;
   flex-wrap: wrap;
-  max-width: 206px;
-  gap: 2px;
+  max-width: 200px;
+  gap: 0px;
+  position: absolute;
+  transition: opacity 0.5s;
+  background-color: white;
+
+  &.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
 }
 
 .block {
@@ -26,17 +42,20 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: fuchsia;
-  background-color: white;
   color: black;
   font-weight: bold;
+  cursor: pointer;
+  transition: color 0.25s, transform 0.25s;
+  &:hover,
+  &.selected {
+    color: fuchsia;
+  }
+  &.matched {
+    color: fuchsia;
+    transform: scale(1.2);
+  }
 }
 
-.grid {
-  display: flex;
-  flex-wrap: wrap;
-  max-width: 626px;
-  // max-width: 434px;
-  gap: 4px;
-  background-color: rgb(40, 168, 162);
+.block-value {
+  pointer-events: none;
 }
