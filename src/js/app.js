@@ -61,11 +61,13 @@ const createBlock = () => {
 
 	letters.forEach((letter, i) => {
 		const blockNode = createNode('div', 'block');
+		const rotateNode = createNode('span', 'block-value');
 		blockNode.setAttribute('data-value', letter[0]);
 		blockNode.setAttribute('data-shape', letter[1]);
 		blockNode.setAttribute('data-index', i);
-		blockNode.innerHTML = letter[0];
-		blockNode.style.transform = `rotate(${getRandomBlockRotation()}deg)`;
+		rotateNode.innerHTML = letter[0];
+		rotateNode.style.transform = `rotate(${getRandomBlockRotation()}deg)`;
+		blockNode.append(rotateNode);
 		blocksNode.append(blockNode);
 	});
 

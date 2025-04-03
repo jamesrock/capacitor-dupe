@@ -77,7 +77,6 @@ body {
   cursor: pointer;
   transition: color 0.25s, transform 0.25s;
   will-change: transform;
-  // position: absolute;
   
   &[data-shape="1"] {
     color: tomato;
