@@ -7,9 +7,10 @@ cards = 'order7',
 rotations = [0, 90, 270];
 
 const getRotation = () => rotations[Math.floor(Math.random() * rotations.length)];
-const getCard = () => data.cards[cards].splice(Math.floor(Math.random() * data.cards[cards].length), 1)[0];
+const getCard = () => shuffle(data.cards[cards].splice(Math.floor(Math.random() * data.cards[cards].length), 1)[0]);
 
 const gridNode = createNode('div', 'grid');
+const levelsNode = createNode('div', 'levels');
 
 const createBlock = () => {
 
@@ -27,20 +28,21 @@ const createBlock = () => {
 		blockNode.setAttribute('data-value', letter);
 		rotatekNode.innerHTML = letter;
 		rotatekNode.style.transform = `rotate(${getRotation()}deg)`;
-		blockNode.appendChild(rotatekNode);
-		blocksNode.appendChild(blockNode);
+		blockNode.append(rotatekNode);
+		blocksNode.append(blockNode);
 	});
 
-	gridNode.prepend(blocksNode);
+	// console.log('createBlock');
+	// console.log(numbers);
+	// console.log(letters);
 
-	console.log(numbers);
-	console.log(letters);
+	return blocksNode;
 
 };
 
 let selected;
 
-gridNode.addEventListener('click', (e) => {
+levelsNode.addEventListener('click', (e) => {
 	
 	const value = e.target.getAttribute('data-value');
 	
@@ -57,10 +59,10 @@ gridNode.addEventListener('click', (e) => {
 			e.target.classList.add('matched');
 			selected.classList.add('matched');
 			const parent = selected.parentNode;
-			createBlock();
+			// gridNode.prepend(createBlock());
 			setTimeout(() => {
-				parent.classList.add('hidden');
-			}, 1000);
+				parent.classList.add('completed');
+			}, 500);
 			selected = null;
 		};
 	}
@@ -71,17 +73,22 @@ gridNode.addEventListener('click', (e) => {
 	
 });
 
-// createBlock();
-// createBlock();
-// createBlock();
-// createBlock();
-// createBlock();
-// createBlock();
-// createBlock();
-// createBlock();
-createBlock();
-
 console.log('cards', data.cards[cards]);
 console.log('symbols', data.symbols[symbols][cards]);
 
-document.body.appendChild(gridNode);
+// gridNode.prepend(createBlock());
+
+const levels = 7;
+let blockCount = 1;
+
+for(var i=0;i<levels;i++) {
+	const levelNode = createNode('div', 'level');
+	for(var c=0;c<blockCount;c++) {
+		levelNode.append(createBlock());
+	};
+	levelsNode.append(levelNode);
+	blockCount += 1;
+};
+
+document.body.append(levelsNode);
+// document.body.append(gridNode);
