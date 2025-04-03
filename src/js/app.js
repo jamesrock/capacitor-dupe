@@ -3,19 +3,20 @@ import { shuffle, createNode } from './utils';
 
 const 
 symbols = 'letters',
-cards = 'order7',
+cards = 'order11',
 rotations = [0, 90, 270];
 
 let targetNodes = null;
 
 const getRandomRotation = () => rotations[Math.floor(Math.random() * rotations.length)];
+const getRandomBlockRotation = () => Math.floor(Math.random() * 360);
 // const getCard = () => shuffle(data.cards[cards].splice(Math.floor(Math.random() * data.cards[cards].length), 1)[0]);
 const getCard = () => shuffle(data.cards[cards][Math.floor(Math.random() * data.cards[cards].length)]);
 const highlightRandomBlocks = () => {
 
-	const blocks = shuffle([0, 1, 2, 3, 4, 5, 6, 7, 8]);
-	const spliceCount = Math.floor(Math.random() * (2 - 1 + 1) + 1);
-	const blocksToHighlight = blocks.splice(0, spliceCount);
+	// const blocks = shuffle([0, 1, 2, 3, 4, 5, 6, 7, 8]);
+	// const spliceCount = Math.floor(Math.random() * (2 - 1 + 1) + 1);
+	const blocksToHighlight = [0];
 	console.log(blocksToHighlight);
 
 	targetNodes = blocksToHighlight.map((id) => {
@@ -24,13 +25,13 @@ const highlightRandomBlocks = () => {
 
 	console.log(targetNodes);
 	
-	document.querySelectorAll(`.container`).forEach((container) => {
-		container.classList.remove('focus');
-	});
+	// document.querySelectorAll(`.container`).forEach((container) => {
+	// 	container.classList.remove('focus');
+	// });
 
-	targetNodes.forEach((node) => {
-		node.classList.add('focus');
-	});
+	// targetNodes.forEach((node) => {
+	// 	node.classList.add('focus');
+	// });
 
 	document.querySelectorAll(`.blocks.completed`).forEach((blocksNode) => {
 		blocksNode.parentNode.removeChild(blocksNode);
@@ -53,9 +54,11 @@ const createBlock = () => {
 	letters.forEach((letter) => {
 		const blockNode = createNode('div', 'block');
 		const rotatekNode = createNode('span', 'block-value');
-		blockNode.setAttribute('data-value', letter);
-		rotatekNode.innerHTML = letter;
-		rotatekNode.style.transform = `rotate(${getRandomRotation()}deg)`;
+		blockNode.setAttribute('data-value', letter[0]);
+		blockNode.setAttribute('data-shape', letter[1]);
+		rotatekNode.innerHTML = letter[0];
+		rotatekNode.style.transform = `rotate(${getRandomBlockRotation()}deg)`;
+		// rotatekNode.style.transform = `rotate(${letter[1]*90}deg)`;
 		blockNode.append(rotatekNode);
 		blocksNode.append(blockNode);
 	});
@@ -84,6 +87,7 @@ gridNode.addEventListener('click', (e) => {
 			// unselect
 			selected.classList.remove('selected');
 			selected = null;
+			count --;
 		}
 		else if(e.target.getAttribute('data-value') === selected.getAttribute('data-value')) {
 
@@ -103,8 +107,10 @@ gridNode.addEventListener('click', (e) => {
 					targetNodes.forEach((node) => {
 						node.querySelector('.blocks:last-child').classList.add('completed');
 					});
-					
-					highlightRandomBlocks();
+
+					setTimeout(() => {
+						highlightRandomBlocks();
+					}, 250);
 
 				}, 500);
 
@@ -128,7 +134,7 @@ gridNode.addEventListener('click', (e) => {
 console.log('cards', data.cards[cards]);
 console.log('symbols', data.symbols[symbols][cards]);
 
-const levels = 9;
+const levels = 1;
 
 for(var i=0;i<levels;i++) {
 	const container = createNode('div', 'container');

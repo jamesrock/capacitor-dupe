@@ -128,7 +128,9 @@ export const data = {
 				'7',
 				'8',
 				'9'
-			])
+			].flatMap((char) => {
+				return [[char, 1], [char, 2], [char, 3]];
+			}))
 		}
 	},
 	cards: {

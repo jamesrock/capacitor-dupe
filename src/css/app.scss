@@ -21,7 +21,7 @@
 
 :root {
   --grid-size: 626px;
-  --blocks-size: 206px;
+  --blocks-size: 290px;
   --focus: tomato;
 }
 
@@ -42,11 +42,11 @@ body {
 .grid {
   display: flex;
   flex-wrap: wrap;
-  width: var(--grid-size);
-  height: var(--grid-size);
+  // width: var(--grid-size);
+  // height: var(--grid-size);
   position: relative;
-  gap: 4px;
-  background-color: gainsboro;
+  // gap: 4px;
+  // background-color: gainsboro;
 
   .blocks {
     &.completed {
@@ -59,8 +59,9 @@ body {
   display: flex;
   flex-wrap: wrap;
   max-width: var(--blocks-size);
-  gap: 2px;
+  gap: 10px;
   transition: opacity 0.25s;
+  background-color: white;
 
   &.completed {
     pointer-events: none;
@@ -70,7 +71,7 @@ body {
 .block {
   width: 50px;
   height: 50px;
-  font-size: 36px;
+  font-size: 42px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -78,13 +79,22 @@ body {
   font-weight: 900;
   cursor: pointer;
   transition: color 0.25s, transform 0.25s;
-  // will-change: transform;
-  background-color: white;
+  will-change: transform;
+  
   &:hover,
   &.selected,
   &.matched {
     color: fuchsia;
-    // transform: scale(1.5);
+    transform: scale(1.5);
+  }
+  &[data-shape="1"] {
+    color: green;
+  }
+  &[data-shape="2"] {
+    color: crimson;
+  }
+  &[data-shape="3"] {
+    color: blue;
   }
 }
 
@@ -99,6 +109,6 @@ body {
     position: absolute;
   }
   &.focus {
-    color: var(--focus);
+    // color: var(--focus);
   }
 }
