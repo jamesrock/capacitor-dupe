@@ -19,6 +19,12 @@
   src: url('../assets/fonts/Poppins-BlackItalic.ttf');
 }
 
+:root {
+  --grid-size: 626px;
+  --blocks-size: 206px;
+  --focus: tomato;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -30,19 +36,19 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  // height: 100vh;
-  padding: 150px;
+  height: 100vh;
 }
 
 .grid {
   display: flex;
   flex-wrap: wrap;
-  width: 200px;
-  height: 200px;
+  width: var(--grid-size);
+  height: var(--grid-size);
   position: relative;
+  gap: 4px;
+  background-color: gainsboro;
 
   .blocks {
-    position: absolute;
     &.completed {
       opacity: 0;
     }
@@ -52,10 +58,9 @@ body {
 .blocks {
   display: flex;
   flex-wrap: wrap;
-  max-width: 200px;
-  gap: 0px;
-  transition: opacity 0.5s;
-  background-color: white;
+  max-width: var(--blocks-size);
+  gap: 2px;
+  transition: opacity 0.25s;
 
   &.completed {
     pointer-events: none;
@@ -69,16 +74,17 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: black;
+  color: inherit;
   font-weight: 900;
   cursor: pointer;
   transition: color 0.25s, transform 0.25s;
-  will-change: transform;
+  // will-change: transform;
+  background-color: white;
   &:hover,
   &.selected,
   &.matched {
     color: fuchsia;
-    transform: scale(1.5);
+    // transform: scale(1.5);
   }
 }
 
@@ -86,22 +92,13 @@ body {
   pointer-events: none;
 }
 
-.levels {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 10px;
-  min-width: 1460px;
-
+.container {
+  width: var(--blocks-size);
+  height: var(--blocks-size);
   .blocks {
-    &.completed {
-      opacity: 0.25;
-    }
+    position: absolute;
   }
-}
-
-.level {
-  display: flex;
-  gap: 10px;
+  &.focus {
+    color: var(--focus);
+  }
 }
