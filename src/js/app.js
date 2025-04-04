@@ -28,7 +28,7 @@ const createBlocks = () => {
 	const numbers = shuffle([...getRandomCard(), ...getRandomCard()]);
 	let filler = getRandomSymbolIndex();
 	while(numbers.includes(filler)) {
-		console.log('match!');
+		// console.log('match!');
 		filler = getRandomSymbolIndex();
 	};
 	numbers.push(filler);
@@ -36,7 +36,7 @@ const createBlocks = () => {
 		return data.symbols[symbols][cards][number];
 	});
 
-	console.log('filler', filler);
+	// console.log('filler', filler);
 
 	letters.forEach((letter, i) => {
 		const blockNode = createNode('div', 'block');
