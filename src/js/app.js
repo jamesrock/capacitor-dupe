@@ -103,8 +103,10 @@ gridNode.addEventListener('click', (e) => {
 
 		}
 		else {
-			
-			deselect();
+
+			setTimeout(() => {
+				deselect();
+			}, 250);
 
 		};
 
