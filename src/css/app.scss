@@ -78,13 +78,13 @@ body {
   transition: color 0.25s, transform 0.25s;
   will-change: transform;
   
-  &[data-shape="1"] {
+  &[data-color="1"] {
     color: tomato;
   }
-  &[data-shape="2"] {
+  &[data-color="2"] {
     color: deepskyblue;
   }
-  &[data-shape="3"] {
+  &[data-color="3"] {
     color: fuchsia;
   }
 
