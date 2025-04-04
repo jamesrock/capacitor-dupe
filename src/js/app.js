@@ -46,7 +46,7 @@ const createBlocks = () => {
 		// blockNode.setAttribute('data-index', i);
 		rotateNode.innerHTML = letter[0];
 		rotateNode.style.transform = `rotate(${getRandomRotation()}deg)`;
-		blockNode.style.fontSize = `${getRandomSize()}px`;
+		// blockNode.style.fontSize = `${getRandomSize()}px`;
 		blockNode.append(rotateNode);
 		blocksNode.append(blockNode);
 	});
