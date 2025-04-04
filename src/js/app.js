@@ -38,14 +38,11 @@ const createBlocks = () => {
 
 	console.log('filler', filler);
 
-	// blocksNode.style.transform = `rotate(${getRandomRotation()}deg)`;
-
 	letters.forEach((letter, i) => {
 		const blockNode = createNode('div', 'block');
 		const rotateNode = createNode('span', 'block-value');
 		blockNode.setAttribute('data-value', `${letter[0]}${letter[1]}`);
 		blockNode.setAttribute('data-color', letter[1]);
-		// blockNode.setAttribute('data-index', i);
 		rotateNode.innerHTML = letter[0];
 		rotateNode.style.transformOrigin = `calc(50% + ${getRandomOrigin()}px) calc(50% + ${getRandomOrigin()}px)`;
 		rotateNode.style.transform = `rotate(${getRandomRotation()}deg)`;
