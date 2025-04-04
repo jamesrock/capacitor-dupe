@@ -13,7 +13,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@capacitor/camera": "latest",
     "@capacitor/core": "latest",
     "@capacitor/ios": "^7.2.0",
     "@capacitor/splash-screen": "latest",
@@ -23,6 +22,6 @@
     "@capacitor/cli": "latest",
     "vite": "^5.4.2"
   },
-  "author": "",
+  "author": "James Rock",
   "license": "ISC"
 }
