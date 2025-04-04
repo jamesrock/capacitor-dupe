@@ -1,3 +1,4 @@
+import { SplashScreen } from '@capacitor/splash-screen';
 import { data } from './data';
 import { shuffle, createNode } from './utils';
 
@@ -131,3 +132,5 @@ document.body.append(gridNode);
 
 // console.log('cards', data.cards[cards]);
 // console.log('symbols', data.symbols[symbols][cards]);
+
+SplashScreen.hide();

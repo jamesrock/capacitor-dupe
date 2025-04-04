@@ -20,10 +20,19 @@
 }
 
 :root {
+  --background: white;
+  --foreground: black;
   --container-size: 370px;
   --blocks-size: 330px;
   --block-size: 50px;
   --gap: 20px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: black;
+    --foreground: white;
+  }
 }
 
 * {
