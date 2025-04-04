@@ -71,11 +71,11 @@ gridNode.addEventListener('click', (e) => {
 	
 	if(selected.includes(e.target)) {
 		e.target.classList.remove('selected');
-		selected.splice(selected.indexOf(e.target, 1));
+		selected.splice(selected.indexOf(e.target), 1);
 	}
 	else {
-		selected.push(e.target);
 		e.target.classList.add('selected');
+		selected.push(e.target);
 	};
 
 	if(selected.length === 2) {
