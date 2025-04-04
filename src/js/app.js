@@ -3,15 +3,13 @@ import { shuffle, createNode } from './utils';
 
 const 
 symbols = 'letters',
-cards = 'order11',
-rotations = [0, 90, 270];
+cards = 'order11';
 
 let 
 selected = [],
 active = null;
 
-const getRandomRotation = () => rotations[Math.floor(Math.random() * rotations.length)];
-const getRandomBlockRotation = () => Math.floor(Math.random() * 360);
+const getRandomRotation = () => Math.floor(Math.random() * 360);
 const getRandomCard = () => shuffle(data.cards[cards][Math.floor(Math.random() * data.cards[cards].length)]);
 const getRandomSymbolIndex = () => Math.floor(Math.random() * data.symbols[symbols][cards].length);
 
@@ -43,7 +41,7 @@ const createBlocks = () => {
 		blockNode.setAttribute('data-color', letter[1]);
 		// blockNode.setAttribute('data-index', i);
 		rotateNode.innerHTML = letter[0];
-		rotateNode.style.transform = `rotate(${getRandomBlockRotation()}deg)`;
+		rotateNode.style.transform = `rotate(${getRandomRotation()}deg)`;
 		blockNode.append(rotateNode);
 		blocksNode.append(blockNode);
 	});
