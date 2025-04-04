@@ -77,7 +77,6 @@ body {
   cursor: pointer;
   transition: color 0.25s, transform 0.25s;
   will-change: transform;
-  
   &[data-color="1"] {
     color: tomato;
   }
@@ -87,11 +86,7 @@ body {
   &[data-color="3"] {
     color: fuchsia;
   }
-
-  &:hover,
-  &.selected,
-  &.matched {
-    // color: grey;
+  &.selected {
     transform: scale(1.5);
   }
 }
