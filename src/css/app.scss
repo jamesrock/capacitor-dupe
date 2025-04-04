@@ -20,6 +20,7 @@
 }
 
 :root {
+  --container-size: 370px;
   --blocks-size: 330px;
   --block-size: 50px;
   --gap: 20px;
@@ -59,6 +60,7 @@ body {
   gap: var(--gap);
   transition: opacity 0.25s;
   background-color: white;
+  padding: 20px;
 
   &.completed {
     pointer-events: none;
@@ -78,7 +80,7 @@ body {
   transition: color 0.25s, transform 0.25s;
   will-change: transform;
   &[data-color="1"] {
-    color: tomato;
+    color: orangered;
   }
   &[data-color="2"] {
     color: deepskyblue;
@@ -96,8 +98,8 @@ body {
 }
 
 .container {
-  width: var(--blocks-size);
-  height: var(--blocks-size);
+  width: var(--container-size);
+  height: var(--container-size);
   .blocks {
     position: absolute;
   }

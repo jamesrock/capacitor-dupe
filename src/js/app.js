@@ -4,7 +4,8 @@ import { shuffle, createNode } from './utils';
 const 
 symbols = 'letters',
 cards = 'order11',
-sizes = [40, 50, 60];
+sizes = [40, 50, 60],
+origins = [-2, 0, 2];
 
 let 
 selected = [],
@@ -15,6 +16,7 @@ const getRandom = (target) => target[getRandomIndex(target)];
 const getRandomRotation = () => Math.floor(Math.random() * 360);
 const getRandomCard = () => shuffle(getRandom(data.cards[cards]));
 const getRandomSize = () => getRandom(sizes);
+const getRandomOrigin = () => getRandom(origins);
 const getRandomSymbolIndex = () => getRandomIndex(data.symbols[symbols][cards]);
 
 const gridNode = createNode('div', 'grid');
@@ -45,6 +47,7 @@ const createBlocks = () => {
 		blockNode.setAttribute('data-color', letter[1]);
 		// blockNode.setAttribute('data-index', i);
 		rotateNode.innerHTML = letter[0];
+		rotateNode.style.transformOrigin = `calc(50% + ${getRandomOrigin()}px) calc(50% + ${getRandomOrigin()}px)`;
 		rotateNode.style.transform = `rotate(${getRandomRotation()}deg)`;
 		blockNode.style.fontSize = `${getRandomSize()}px`;
 		blockNode.append(rotateNode);
