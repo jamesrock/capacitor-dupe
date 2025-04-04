@@ -49,6 +49,17 @@ body {
   height: 100svh;
 }
 
+main {
+  max-width: 600px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  text-align: center;
+}
+
 .grid {
   display: flex;
   flex-wrap: wrap;
