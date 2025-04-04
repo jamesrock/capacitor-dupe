@@ -18,7 +18,7 @@ const getRandomSymbolIndex = () => Math.floor(Math.random() * data.symbols[symbo
 const gridNode = createNode('div', 'grid');
 const container = createNode('div', 'container');
 
-const createBlock = () => {
+const createBlocks = () => {
 
 	const blocksNode = createNode('div', 'blocks');
 	const numbers = shuffle([...getRandomCard(), ...getRandomCard()]);
@@ -48,7 +48,7 @@ const createBlock = () => {
 		blocksNode.append(blockNode);
 	});
 
-	// console.log('createBlock');
+	// console.log('createBlocks');
 	// console.log(numbers);
 	// console.log(letters);
 
@@ -84,9 +84,9 @@ gridNode.addEventListener('click', (e) => {
 
 		if(selected[0].getAttribute('data-value') === selected[1].getAttribute('data-value')) {
 
-			const newBlock = createBlock();
+			const newBlocks = createBlocks();
 			
-			container.prepend(newBlock);
+			container.prepend(newBlocks);
 
 			setTimeout(() => {
 
@@ -94,7 +94,7 @@ gridNode.addEventListener('click', (e) => {
 
 				setTimeout(() => {
 					active.parentNode.removeChild(active);
-					active = newBlock;
+					active = newBlocks;
 				}, 250);
 
 			}, 500);
@@ -118,7 +118,7 @@ document.addEventListener('click', (e) => {
 	};
 });
 
-active = createBlock();
+active = createBlocks();
 container.append(active);
 gridNode.append(container);
 
