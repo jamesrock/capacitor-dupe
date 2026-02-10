@@ -1,4 +1,4 @@
-import { shuffle } from './utils';
+import { shuffle } from '@jamesrock/rockjs';
 
 export const data = {
 	symbols: {

@@ -1,6 +1,6 @@
 import { SplashScreen } from '@capacitor/splash-screen';
 import { data } from './data';
-import { shuffle, createNode } from './utils';
+import { shuffle, createNode, getRandom, randomIndex } from '@jamesrock/rockjs';
 
 const 
 symbols = 'letters',
@@ -12,13 +12,11 @@ let
 selected = [],
 active = null;
 
-const getRandomIndex = (target) => Math.floor(Math.random() * target.length);
-const getRandom = (target) => target[getRandomIndex(target)];
 const getRandomRotation = () => Math.floor(Math.random() * 360);
 const getRandomCard = () => shuffle(getRandom(data.cards[cards]));
 const getRandomSize = () => getRandom(sizes);
 const getRandomOrigin = () => getRandom(origins);
-const getRandomSymbolIndex = () => getRandomIndex(data.symbols[symbols][cards]);
+const getRandomSymbolIndex = () => randomIndex(data.symbols[symbols][cards]);
 
 const gridNode = createNode('div', 'grid');
 const container = createNode('div', 'container');
