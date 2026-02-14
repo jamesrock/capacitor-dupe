@@ -1,3 +1,4 @@
+import '../css/app.css';
 import { SplashScreen } from '@capacitor/splash-screen';
 import { data } from './data';
 import { shuffle, createNode, getRandom, randomIndex } from '@jamesrock/rockjs';
