@@ -1,9 +1,9 @@
 {
-  "name": "capacitor-dupe",
+  "name": "dupe",
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "start": "vite",
+    "dev": "vite",
     "host": "vite --host",
     "build": "vite build",
     "preview": "vite preview",
