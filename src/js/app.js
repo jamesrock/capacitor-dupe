@@ -32,7 +32,7 @@ const getRandomRotation = () => Math.floor(Math.random() * 360);
 const getRandomCard = () => shuffle(getRandom(data.cards[cards]));
 const getRandomSize = () => getRandom(sizes);
 const getRandomOrigin = () => getRandom(origins);
-const getRandomSymbolIndex = () => [randomIndex(data.symbols[symbols][cards]), 1];
+const getRandomSymbolIndex = () => randomIndex(data.symbols[symbols]);
 
 const gridNode = createNode('div', 'grid');
 const container = createNode('div', 'container');
@@ -41,26 +41,28 @@ const createBlocks = () => {
 
 	const colorOptions = [...colorKeys];
 	const blocksNode = createNode('div', 'blocks');
-	const bob = getRandomCard();
-	const jack = [...getRandomCard(), ...getRandomCard()];
-	const numbers = shuffle(shuffle(jack.map((n, i) => [n, i < bob.length ? 1 : 2])));
+	const numbers = shuffle(shuffle([...getRandomCard(), ...getRandomCard()]));
+	
+	// console.log('numbers', numbers);
+
 	let filler = getRandomSymbolIndex();
-	while(jack.includes(filler)) {
+	while(numbers.includes(filler)) {
 		filler = getRandomSymbolIndex();
 	};
 	numbers.push(filler);
-	const letters = numbers.map(([number, color]) => {
-		return [data.symbols[symbols][cards][number], color];
+
+	const letters = numbers.map((number) => {
+		return data.symbols[symbols][number];
 	});
 
-	[1, 2].forEach((key) => {
+	[1, 2, 3, 4].forEach((key) => {
 		blocksNode.style.setProperty(`--color-${key}`, pluckRandom(colorOptions));
 	});
 
 	letters.forEach((letter) => {
 		const blockNode = createNode('div', 'block');
 		const rotateNode = createNode('span', 'block-value');
-		blockNode.setAttribute('data-value', letter[0]);
+		blockNode.setAttribute('data-value', `${letter[0]}${letter[1]}`);
 		blockNode.setAttribute('data-color', letter[1]);
 		rotateNode.innerHTML = letter[0];
 		rotateNode.style.transformOrigin = `calc(50% + ${getRandomOrigin()}px) calc(50% + ${getRandomOrigin()}px)`;

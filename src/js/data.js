@@ -27,32 +27,6 @@ const base = [
 	'X',
 	'Y',
 	'Z',
-	'a',
-	'b',
-	'c',
-	'd',
-	'e',
-	'f',
-	'g',
-	'h',
-	'i',
-	'j',
-	'k',
-	'l',
-	'm',
-	'n',
-	'o',
-	'p',
-	'q',
-	'r',
-	's',
-	't',
-	'u',
-	'v',
-	'w',
-	'x',
-	'y',
-	'z',
 	'1',
 	'2',
 	'3',
@@ -61,15 +35,30 @@ const base = [
 	'6',
 	'7',
 	'8',
-	'9'
+	'9',
+	'!',
+	'?'
 ];
+
+const applyColor = (items, color) => items.map((letter) => [letter, color]);
+
+const makeSet = () => {
+
+	let out = [];
+
+	[1, 2, 3, 4].forEach((color) => {
+
+		out = out.concat(applyColor(base, color));
+
+	});
+
+	return shuffle(out);
+
+};
 
 export const data = {
 	symbols: {
-		letters: {
-			order7: shuffle([...base, ...base, ...base]),
-			order11: shuffle([...base, ...base, ...base])
-		}
+		letters: makeSet()
 	},
 	cards: {
 		order7: [

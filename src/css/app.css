@@ -81,6 +81,7 @@ main {
   gap: var(--gap);
   transition: opacity 0.25s;
   padding: 20px;
+  background-color: var(--background);
 
   &.completed {
     pointer-events: none;
@@ -105,6 +106,13 @@ main {
   }
   &[data-color="2"] {
     color: var(--color-2);
+  }
+  &[data-color="3"] {
+    color: var(--color-3);
+  }
+
+  &[data-color="4"] {
+    color: var(--color-4);
   }
   &.selected {
     transform: scale(1.5);
