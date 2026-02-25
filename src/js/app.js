@@ -1,5 +1,4 @@
 import '/css/app.css';
-import { SplashScreen } from '@capacitor/splash-screen';
 import { data } from './data';
 import { shuffle, createNode, getRandom, randomIndex } from '@jamesrock/rockjs';
 
@@ -131,5 +130,3 @@ document.body.append(gridNode);
 
 // console.log('cards', data.cards[cards]);
 // console.log('symbols', data.symbols[symbols][cards]);
-
-SplashScreen.hide();
