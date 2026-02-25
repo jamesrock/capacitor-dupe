@@ -1,12 +1,28 @@
 import '/css/app.css';
 import { data } from './data';
-import { shuffle, createNode, getRandom, randomIndex } from '@jamesrock/rockjs';
+import { 
+	shuffle, 
+	createNode, 
+	getRandom, 
+	pluckRandom,
+	randomIndex
+} from '@jamesrock/rockjs';
 
 const 
 symbols = 'letters',
 cards = 'order11',
 sizes = [40, 50, 60],
-origins = [-2, 0, 2];
+origins = [-2, 0, 2],
+colors = {
+	'yellow': 'gold',
+	'red': 'rgb(237, 0, 73)',
+	'green': 'limegreen',
+	'purple': 'rgb(177, 49, 237)',
+	'blue': 'rgb(0, 111, 222)',
+	'orange': 'rgb(255, 125, 0)',
+	'cyan': '#00E0FF'
+},
+colorKeys = Object.keys(colors).map((id) => colors[id]);
 
 let 
 selected = [],
@@ -16,28 +32,32 @@ const getRandomRotation = () => Math.floor(Math.random() * 360);
 const getRandomCard = () => shuffle(getRandom(data.cards[cards]));
 const getRandomSize = () => getRandom(sizes);
 const getRandomOrigin = () => getRandom(origins);
-const getRandomSymbolIndex = () => randomIndex(data.symbols[symbols][cards]);
+const getRandomSymbolIndex = () => [randomIndex(data.symbols[symbols][cards]), 1];
 
 const gridNode = createNode('div', 'grid');
 const container = createNode('div', 'container');
 
 const createBlocks = () => {
 
+	const colorOptions = [...colorKeys];
 	const blocksNode = createNode('div', 'blocks');
-	const numbers = shuffle([...getRandomCard(), ...getRandomCard()]);
+	const bob = getRandomCard();
+	const jack = [...getRandomCard(), ...getRandomCard()];
+	const numbers = shuffle(shuffle(jack.map((n, i) => [n, i < bob.length ? 1 : 2])));
 	let filler = getRandomSymbolIndex();
-	while(numbers.includes(filler)) {
-		// console.log('match!');
+	while(jack.includes(filler)) {
 		filler = getRandomSymbolIndex();
 	};
 	numbers.push(filler);
-	const letters = numbers.map((number) => {
-		return data.symbols[symbols][cards][number];
+	const letters = numbers.map(([number, color]) => {
+		return [data.symbols[symbols][cards][number], color];
 	});
 
-	// console.log('filler', filler);
+	[1, 2].forEach((key) => {
+		blocksNode.style.setProperty(`--color-${key}`, pluckRandom(colorOptions));
+	});
 
-	letters.forEach((letter, i) => {
+	letters.forEach((letter) => {
 		const blockNode = createNode('div', 'block');
 		const rotateNode = createNode('span', 'block-value');
 		blockNode.setAttribute('data-value', `${letter[0]}${letter[1]}`);
@@ -49,10 +69,6 @@ const createBlocks = () => {
 		blockNode.append(rotateNode);
 		blocksNode.append(blockNode);
 	});
-
-	// console.log('createBlocks');
-	// console.log(numbers);
-	// console.log(letters);
 
 	return blocksNode;
 

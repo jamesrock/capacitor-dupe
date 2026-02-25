@@ -20,19 +20,18 @@
 }
 
 :root {
-  --background: white;
+  --background: floralwhite;
   --foreground: black;
   --container-size: 370px;
   --blocks-size: 330px;
   --block-size: 50px;
   --gap: 20px;
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
+  @media (prefers-color-scheme: dark) {
     --background: black;
     --foreground: white;
   }
+
 }
 
 * {
@@ -47,6 +46,8 @@ body {
   align-items: center;
   justify-content: center;
   height: 100svh;
+  background-color: var(--background);
+  color: var(--foreground);
 }
 
 main {
@@ -79,7 +80,6 @@ main {
   height: var(--blocks-size);
   gap: var(--gap);
   transition: opacity 0.25s;
-  background-color: white;
   padding: 20px;
 
   &.completed {
@@ -99,14 +99,12 @@ main {
   cursor: pointer;
   transition: color 0.25s, transform 0.25s;
   will-change: transform;
+  
   &[data-color="1"] {
-    color: orangered;
+    color: var(--color-1);
   }
   &[data-color="2"] {
-    color: deepskyblue;
-  }
-  &[data-color="3"] {
-    color: fuchsia;
+    color: var(--color-2);
   }
   &.selected {
     transform: scale(1.5);
