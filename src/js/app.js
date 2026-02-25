@@ -21,8 +21,7 @@ colors = {
 	'blue': 'rgb(0, 111, 222)',
 	'orange': 'rgb(255, 125, 0)',
 	'cyan': '#00E0FF'
-},
-colorKeys = Object.keys(colors).map((id) => colors[id]);
+};
 
 let 
 selected = [],
@@ -33,17 +32,14 @@ const getRandomCard = () => shuffle(getRandom(data.cards[cards]));
 const getRandomSize = () => getRandom(sizes);
 const getRandomOrigin = () => getRandom(origins);
 const getRandomSymbolIndex = () => randomIndex(data.symbols[symbols]);
-
 const gridNode = createNode('div', 'grid');
 const container = createNode('div', 'container');
 
 const createBlocks = () => {
 
-	const colorOptions = [...colorKeys];
+	const colorOptions = Object.keys(colors).map((id) => colors[id]);
 	const blocksNode = createNode('div', 'blocks');
 	const numbers = shuffle(shuffle([...getRandomCard(), ...getRandomCard()]));
-	
-	// console.log('numbers', numbers);
 
 	let filler = getRandomSymbolIndex();
 	while(numbers.includes(filler)) {
