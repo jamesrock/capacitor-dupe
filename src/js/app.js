@@ -60,7 +60,7 @@ const createBlocks = () => {
 	letters.forEach((letter) => {
 		const blockNode = createNode('div', 'block');
 		const rotateNode = createNode('span', 'block-value');
-		blockNode.setAttribute('data-value', `${letter[0]}${letter[1]}`);
+		blockNode.setAttribute('data-value', letter[0]);
 		blockNode.setAttribute('data-color', letter[1]);
 		rotateNode.innerHTML = letter[0];
 		rotateNode.style.transformOrigin = `calc(50% + ${getRandomOrigin()}px) calc(50% + ${getRandomOrigin()}px)`;
